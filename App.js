@@ -1,9 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import styles, { version } from './styles/styles'
 import strings from './strings/strings'
 import MyTextArea from './componentsLiftState/MyTextArea'
 import RandomizeButton from './componentsLiftState/RandomizeButton';
+import TodoPage from './components/Todo/Page'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -22,12 +23,9 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <View style={styles.masterContainer}>
-        <MyTextArea text="Qualquer coisa ao que nós fizemos!!!!!"/>
-        <RandomizeButton onMyPress={this.handleRandomization}/>
-        <RandomizeButton onMyPress={this.handleButtonRandomClick}/>
-        <RandomizeButton/>
-      </View>
+      <ScrollView contentContainerStyle={styles.masterContainer}>
+        <TodoPage/>
+      </ScrollView>
     );
   }
 }

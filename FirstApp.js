@@ -78,16 +78,17 @@ export default class App extends React.Component {
         <View style={{flex: 5, borderTopColor: "#000", borderTopWidth: 10}}>
           <FlatList
             data={[
-              {key: 'Devin'},
-              {key: 'Jackson'},
-              {key: 'James'},
-              {key: 'Joel'},
-              {key: 'John'},
-              {key: 'Jillian'},
-              {key: 'Jimmy'},
-              {key: 'Julie'},
+              {name: 'Devin'},
+              {name: 'Jackson'},
+              {name: 'James'},
+              {name: 'Joel'},
+              {name: 'John'},
+              {name: 'Jillian'},
+              {name: 'Jimmy'},
+              {name: 'Julie'},
             ]}
-            renderItem={({item}) => <Text style={styles.item}>{item.key}!!</Text>}
+            keyExtractor={(item, index) => "k" + index}
+            renderItem={({item}) => <Text style={styles.item}>{item.name}!!</Text>}
           />
         </View>
         <View style={{flex: 1}}>
