@@ -18,9 +18,11 @@ class List extends Component {
         !this.props.onRemove || this.props.onRemove (index)
     }
     handleSomeEditing (index) {
+        console.log ("handleSomeEditing", index)
         this.setState({index_editing: index})
     }
     renderItem (item, index) {
+        console.log("List renderItem", index)
         return <TodoItem key={"item" + index} 
                          data={item}
                          isEditing={index === this.state.index_editing}
@@ -31,6 +33,7 @@ class List extends Component {
                />
     }
     render () {
+        console.log ("Render List", this.state.index_editing)
         return <View className="todo-list">
             <FlatList
                 data={this.props.list}
