@@ -54,27 +54,19 @@ class Item extends Component {
 
     render () {
         console.log("Render Item", this.props)
-        const {text, date} = this.state.data
-        return <View style={{marginBottom: 10}}>
+        const {text, date, done} = this.state.data
+        return <View style={{marginBottom: 10, paddingVertical: 20,}}>
             <View style={{paddingHorizontal: 20, flexDirection: 'row'}}>
-                <View style={{marginRight: 10}}>{
-                    this.props.isEditing
-                    ? <TextInput value={this.state.data.text}
-                                onChangeText={this.handleInputChange.bind(this, 'text')}
-                        />
-                    : <Text>{text}</Text>
-                }</View>
-                <View>{
-                    this.props.isEditing
-                    ? <TextInput value={formatDate(this.state.data.date, true)}
-                                onChange={this.handleInputChange.bind(this, 'date')}
-                        />
-                    : <Text>{formatDate(date)}</Text>
-                }</View>
+                <View style={{marginRight: 10}}>
+                    <Text>{text}</Text>
+                </View>
+                <View>
+                    <Text>{formatDate(date)}</Text>
+                </View>
             </View>
             <View style={{paddingHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity onPress={this.handleStateChange}><Text>Toggle State</Text></TouchableOpacity>
-                <TouchableOpacity onPress={this.handleEdit}><Text>{this.props.isEditing ? "Save" : "Edit"}</Text></TouchableOpacity>
+                <TouchableOpacity onPress={this.handleEdit}><Text>Edit</Text></TouchableOpacity>
                 <TouchableOpacity onPress={this.props.onRemove} disabled={this.props.cantRemove}><Text>Remove</Text></TouchableOpacity>
             </View>
         </View>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {View, FlatList} from 'react-native'
+import {View, Text, FlatList} from 'react-native'
 import TodoItem from './Item'
-//import './../css/List.css'
+import styles from './../../styles/styles'
 
 class List extends Component {
     constructor(props) {
@@ -19,13 +19,14 @@ class List extends Component {
     }
     handleSomeEditing (index) {
         console.log ("handleSomeEditing", index)
-        this.setState({index_editing: index})
+        //this.setState({index_editing: index})
+        !this.props.onEdit || this.props.onEdit(index)
     }
     renderItem (item, index) {
         console.log("List renderItem", index)
         return <TodoItem key={"item" + index} 
                          data={item}
-                         isEditing={index === this.state.index_editing}
+                         _isEditing={index === this.state.index_editing}
                          cantRemove={this.state.index_editing !== -1}
                          onEditing={this.handleSomeEditing.bind(this, index)}
                          onUpdate={this.handleItemUpdate.bind(this, index)}
@@ -33,9 +34,10 @@ class List extends Component {
                />
     }
     render () {
-        console.log ("Render List", this.state.index_editing)
-        return <View className="todo-list">
+        return <View style={styles.todoList}>
+            <Text>xpto</Text>
             <FlatList
+                contentContainerStyle={{height: 300}}
                 data={this.props.list}
                 keyExtractor={(item, index) => "k" + index}
                 renderItem={
@@ -49,6 +51,7 @@ class List extends Component {
                 }
             >
             </FlatList>
+            <Text>xpti</Text>
         </View>
     }
 }

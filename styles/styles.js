@@ -27,18 +27,21 @@ const styles = StyleSheet.create({
         paddingTop: 30,
     },
     addFormContainer: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
-    },
-    addFormWrapper: {
-
-      alignSelf: 'stretch',
-      backgroundColor: '#f6f6f6',
       borderTopColor: '#f00',
       borderTopWidth: 2,
+      borderBottomColor: '#000',
+      borderBottomWidth: 2,
+      paddingVertical: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    addFormWrapper: {
+      flex: 1,
+      backgroundColor: 'rgba(52, 52, 52, 0.8)',
       padding: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     FAB: {
       position: 'absolute',
@@ -55,6 +58,9 @@ const styles = StyleSheet.create({
     FABText: {
       color: '#fff',
       fontSize: 40,
+    },
+    todoList: {
+      flex: 1,
     }
   });
 

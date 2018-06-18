@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native'
 import TodoList from './List'
-import TodoAddForm from './AddForm'
+import TodoForm from './Form'
 import styles from './../../styles/styles'
 
 /* ideia da Teresa, uma task pode ter N categorias e as categorias podem ter uma cor atribuída */
@@ -46,6 +46,8 @@ class Page extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      item_to_edit: -1,
+      adding: false,
       list: [
         {
           text: "teste",
@@ -93,6 +95,9 @@ class Page extends Component {
     this.handleUpdateListItem = this.handleUpdateListItem.bind(this)
     this.handleRemoveListItem = this.handleRemoveListItem.bind(this)
     this.handleAddListItem = this.handleAddListItem.bind(this)
+    this.handleEditListItem = this.handleEditListItem.bind(this)
+    this.handleStartAdding = this.handleStartAdding.bind(this)
+    this.handleCancelForm = this.handleCancelForm.bind(this)
   }
 
   componentWillMount () {
@@ -154,8 +159,19 @@ class Page extends Component {
     this.updateList(list)
   }
 
+  handleEditListItem (index) {
+    this.setState({item_to_edit: index, adding: false})
+  }
+
+  handleStartAdding () {
+    this.setState({item_to_edit: -1, adding: true})
+  }
+
+  handleCancelForm () {
+    this.setState({item_to_edit: -1, adding: false})
+  }
+
   render() {
-    console.log("App Render")
     return (
       <View style={{flex: 1}}>
         <View style={styles.listSection}>
@@ -164,10 +180,19 @@ class Page extends Component {
                     filter={item => !item.done}
                     onUpdate={this.handleUpdateListItem}
                     onRemove={this.handleRemoveListItem}
+                    onEdit={this.handleEditListItem}
           />
         </View>
+        
+        <TodoForm editingItemIndex={this.state.item_to_edit}
+                  editingItem={this.state.item_to_edit !== -1 ? this.state.list[this.state.item_to_edit] : null}
+                  adding={this.state.adding}
+                  onSubmit={this.handleAddListItem}
+                  onCancel={this.handleCancelForm}/>
 
-        <TodoAddForm onSubmit={this.handleAddListItem}/>
+        <TouchableOpacity onPress={this.handleStartAdding} style={styles.FAB}>
+          <Text style={styles.FABText}>+</Text>
+        </TouchableOpacity>
 
       </View>
     )
