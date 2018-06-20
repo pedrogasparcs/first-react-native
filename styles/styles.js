@@ -1,13 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+
+const baseFont = Platform.OS === 'android' ? 'Roboto' : 'San Francisco'
 
 const styles = StyleSheet.create({
-  listSection: {
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
   sectionHeading: {
     fontSize: 32,
     textAlign: 'center',
+    paddingBottom: 20,
+    borderBottomColor: '#80CBC4',
+    borderBottomWidth: 3,
   },
     textStyle: {
       fontSize: 26,
@@ -59,9 +60,40 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontSize: 40,
     },
+    listSection: {
+      flex: 1,
+      paddingTop: 20,
+    },
     todoList: {
       flex: 1,
-    }
+    },
+    todoList__container: {
+      paddingTop: 10,
+      paddingBottom: 90,
+    },
+    item__wrapper: {
+      borderBottomWidth: 2,
+      borderColor: '#9FA8DA',
+      paddingVertical: 20,
+    },
+    item__text: {
+      fontFamily: baseFont,
+      fontSize: 20,
+    },
+    item__date: {
+      fontFamily: baseFont,
+      fontSize: 16,
+    },
+    swipeBtn__wrapper: {
+      flex: 1, 
+      justifyContent: 'center', 
+      alignItems: 'center',
+    },
+    swipeBtn__text: {
+      color: '#fff',
+      textAlign: 'center',
+
+    },
   });
 
 export default styles

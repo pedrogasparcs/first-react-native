@@ -12,14 +12,6 @@ export default class App extends React.Component {
     this.state = {
       text: ""
     }
-    this.handleRandomization = this.handleRandomization.bind(this)
-    this.handleButtonRandomClick = this.handleButtonRandomClick.bind(this)
-  }
-  handleRandomization () {
-    console.log("handleRandomization")
-  }
-  handleButtonRandomClick () {
-    console.log("handleButtonRandomClick")
   }
   render() {
     return (

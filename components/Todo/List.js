@@ -23,7 +23,7 @@ class List extends Component {
         !this.props.onEdit || this.props.onEdit(index)
     }
     renderItem (item, index) {
-        console.log("List renderItem", index)
+        //console.log("List renderItem", index)
         return <TodoItem key={"item" + index} 
                          data={item}
                          _isEditing={index === this.state.index_editing}
@@ -35,11 +35,10 @@ class List extends Component {
     }
     render () {
         return <View style={styles.todoList}>
-            <Text>xpto</Text>
             <FlatList
-                contentContainerStyle={{height: 300}}
+                contentContainerStyle={styles.todoList__container}
                 data={this.props.list}
-                keyExtractor={(item, index) => "k" + index}
+                keyExtractor={(item, index) => "kapa" + index}
                 renderItem={
                     ({item, index}) => !this.props.filter 
                     ? this.renderItem(item, index) 
@@ -49,9 +48,7 @@ class List extends Component {
                         : null
                     )
                 }
-            >
-            </FlatList>
-            <Text>xpti</Text>
+            />
         </View>
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, FlatList} from 'react-native'
 import TodoList from './List'
 import TodoForm from './Form'
 import styles from './../../styles/styles'
@@ -141,18 +141,21 @@ class Page extends Component {
   }
 
   handleUpdateListItem (index, data) {
+    console.log ("handleUpdateListItem", index, data)
     let list = this.state.list.slice()
     list[index] = data
     this.updateList(list)
   }
 
   handleRemoveListItem (index) {
+    console.log ("handleRemoveListItem", index)
     let list = this.state.list.slice()
     list.splice(index, 1)
     this.updateList(list)
   }
 
   handleAddListItem (data) {
+    console.log ("handleAddListItem", data)
     //console.log (data)
     let list = this.state.list.slice()
     list.push(data)
@@ -175,13 +178,15 @@ class Page extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={styles.listSection}>
+
           <Text style={styles.sectionHeading}>Tasks To be Done</Text>
           <TodoList list={this.state.list}
-                    filter={item => !item.done}
+                    filter={item => true/*!item.done*/}
                     onUpdate={this.handleUpdateListItem}
                     onRemove={this.handleRemoveListItem}
                     onEdit={this.handleEditListItem}
           />
+          
         </View>
         
         <TodoForm editingItemIndex={this.state.item_to_edit}
