@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+import { Font } from 'expo';
 import styles, { version } from './styles/styles'
 import strings from './strings/strings'
 import MyTextArea from './componentsLiftState/MyTextArea'
@@ -10,14 +11,27 @@ export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      text: ""
+      fontLoaded: false
     }
   }
+  async componentDidMount() {
+    await Font.loadAsync({
+      'open-sans-bold': require('./assets/fonts/Open_Sans/OpenSans-Bold.ttf'),
+      'open-sans': require('./assets/fonts/Open_Sans/OpenSans-Regular.ttf'),
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.masterContainer}>
-        <TodoPage/>
-      </ScrollView>
+      <View style={styles.masterContainer}>
+      {
+        !!this.state.fontLoaded
+        ? <TodoPage/>
+        : <Text>Loading...</Text>
+      }
+      </View>
     );
   }
 }

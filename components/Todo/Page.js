@@ -188,7 +188,6 @@ class Page extends Component {
           />
           
         </View>
-        
         <TodoForm editingItemIndex={this.state.item_to_edit}
                   editingItem={this.state.item_to_edit !== -1 ? this.state.list[this.state.item_to_edit] : null}
                   adding={this.state.adding}

@@ -22,6 +22,7 @@ class Form extends Component {
                 text: "",
                 date: "",
                 done: false,
+                color: "",
             },
         }
         this.handleInputChange = this.handleInputChange.bind(this)
@@ -64,23 +65,20 @@ class Form extends Component {
     }
 
     render () {
-        return <Modal 
-        animationType="slide"
-        transparent={true}
-        visible={this.state.modalVisible}
-        onRequestClose={this.handleCancel}
-        style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f00'}}>
-            <KeyboardAvoidingView 
-                style={[styles.addFormWrapper]}
-                behavior="padding"
-                >
+        return <Modal animationType="slide"
+                      transparent={true} 
+                      visible={this.state.modalVisible}
+                      onRequestClose={this.handleCancel}
+                      style={styles.modal}>
+            <View 
+                style={[styles.addFormWrapper]}>
                 <View style={styles.addFormContainer}>
-                    <View>
+                    <View style={{flexDirection: 'row', marginVertical: 10,}}>
                         <TextInput value={this.state.data.text} 
-                            onChangeText={this.handleInputChange.bind(this, 'text')}
-                        />
+                                   onChangeText={this.handleInputChange.bind(this, 'text')}
+                                   style={{flex: 1,}}/>
                     </View>
-                    <View>
+                    <View style={{flexDirection: 'row', marginVertical: 10,}}>
                         <DatePicker
                             style={{width: 200}}
                             date={this.state.data.date}
@@ -104,16 +102,35 @@ class Form extends Component {
                             }}
                             onDateChange={this.handleInputChange.bind(this, 'date')}
                         />
+                        <Swatches value={this.state.data.color} onChange={this.handleInputChange.bind(this, 'color')}/>
                     </View>
-                    <View>
+                    <View style={{flexDirection: 'row', marginVertical: 10,}}>
+                        <Text style={{fontFamily: 'open-sans', fontSize: 16}}>Is it done?</Text>
                         <Switch value={this.state.data.done}
                                 onValueChange={this.handleInputChange.bind(this, 'done')}
                             />
                     </View>
-                    <TouchableOpacity onPress={this.handleSubmit}><Text>Submit</Text></TouchableOpacity>
+                    <View style={[styles.modalBtnsWrapper, {marginVertical: 10,}]}>
+                        <TouchableOpacity onPress={this.handleCancel} style={styles.modalBtn}><Text style={styles.modalBtnText}>CANCEL</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={this.handleSubmit} style={[styles.modalBtn, styles.modalBtnSubmit]}><Text style={[styles.modalBtnText, styles.modalBtnTextSubmit]}>SUBMIT</Text></TouchableOpacity>
+                    </View>
                 </View>
-            </KeyboardAvoidingView>
+            </View>
         </Modal>
     }
 }
+
+const Swatches = ({value, onChange}) => {
+    const swatches = [
+        '#f00', '#0f0', '#00f', '#000'
+    ]
+    return swatches.map ((color, index) => <Swatch key={"color" + index} color={color} isSelected={color === value} onSelect={() => !onChange || onChange(color)}/>)
+}
+
+const Swatch = ({color, isSelected, onSelect}) => {
+    return <TouchableOpacity onPress={() => !onSelect || onSelect()}>
+        <View style={{borderWidth: 4, borderColor: isSelected ? '#aaa' : '#fff', backgroundColor: color, width: 40, height: 40}}></View>
+    </TouchableOpacity>
+}
+
 export default Form;

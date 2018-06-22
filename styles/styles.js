@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-const baseFont = Platform.OS === 'android' ? 'Roboto' : 'San Francisco'
+const baseFont = 'open-sans' //Platform.OS === 'android' ? 'Roboto' : 'San Francisco'
 
 const styles = StyleSheet.create({
   sectionHeading: {
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     borderBottomColor: '#80CBC4',
     borderBottomWidth: 3,
+    fontFamily: 'open-sans-bold',
   },
     textStyle: {
       fontSize: 26,
@@ -27,13 +28,36 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: 30,
     },
+    modal: {
+      flex: 1, 
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    modalBtnsWrapper: {
+      flexDirection: 'row',
+    },
+    modalBtn: {
+      marginVertical: 10,
+      marginHorizontal: 20,
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+    },
+    modalBtnSubmit: {
+      backgroundColor: '#00f',
+    },
+    modalBtnText: {
+      fontFamily: 'open-sans-bold',
+    },
+    modalBtnTextSubmit: {
+      color: '#fff',
+    },
     addFormContainer: {
-      borderTopColor: '#f00',
+      borderTopColor: '#000',
       borderTopWidth: 2,
       borderBottomColor: '#000',
       borderBottomWidth: 2,
-      paddingVertical: 20,
-      flexDirection: 'row',
+      backgroundColor: '#fff',
+      padding: 20,
       alignItems: 'center',
       justifyContent: 'center',
     },

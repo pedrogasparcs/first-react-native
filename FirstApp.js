@@ -69,7 +69,7 @@ export default class App extends React.Component {
                 'John', 
                 'Julie'
               ]},
-            ]}
+            ]}  
             renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
             renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
             keyExtractor={(item, index) => index}
